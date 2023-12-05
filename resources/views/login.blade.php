@@ -1,29 +1,15 @@
-<!-- resources/views/login.blade.php -->
+@extends('layout')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
+@section('title', 'Iniciar Sesión')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
-        </div>
-
-        <div>
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" required>
-        </div>
-
-        <div>
+@section('content')
+    <div class="login-container">
+        <h2>Iniciar sesión</h2>
+        <form>
+            <!-- Campos de inicio de sesión: usuario y contraseña -->
+            <input type="text" placeholder="CURP">
+            <input type="password" placeholder="Contraseña">
             <button type="submit">Iniciar sesión</button>
-        </div>
-    </form>
-</body>
-</html>
+        </form>
+    </div>
+@endsection

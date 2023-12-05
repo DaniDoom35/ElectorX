@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    use AuthenticatesUsers;
+
+    protected $redirectTo = '/inicio'; // Ruta a la que se redirige después de iniciar sesión
+
+    public function __construct()
     {
-        return view('login');
+        $this->middleware('guest')->except('logout');
     }
 }
