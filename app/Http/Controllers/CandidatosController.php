@@ -9,7 +9,7 @@ class CandidatosController extends Controller
     public function index()
     {
         $candidatos = Candidatos::all();
-        return view('candidatos.index', compact('candidatos'));
+        return view('candidatos.inicio', compact('candidatos'));
     }
 
     // Resto de métodos como create, store, show, edit, update, destroy

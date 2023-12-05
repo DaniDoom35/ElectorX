@@ -5,6 +5,22 @@ use App\Http\Controllers\EleccionesController;
 use App\Http\Controllers\CandidatosController;
 use App\Http\Controllers\VotantesController;
 use App\Http\Controllers\VotosController;
+use App\Http\Controllers\Auth\LoginController;
+
+
+
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+
+Route::get('/inicio', function () {
+    return view('inicio');
+})->name('inicio');
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/candidatos', [CandidatosController::class, 'index'])->name('candidatos');
+Route::get('/ayuda', [AyudaController::class, 'index'])->name('ayuda');
+
 
 // Rutas para Elecciones
 Route::get('/elecciones', [EleccionesController::class, 'index'])->name('elecciones.index');
