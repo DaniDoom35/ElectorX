@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'laravelelectorx-production.up.railway.app'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
