@@ -12,12 +12,12 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="curp" class="col-md-4 col-form-label text-md-end">{{ __('CURP') }}</label>
+                            <label for="curp" class="col-md-4 col-form-label text-md-end">{{ __('Clave Elector') }}</label>
 
                             <div class="col-md-6">
-                                <input id="curp" type="text" class="form-control @error('curp') is-invalid @enderror" name="curp" value="{{ old('curp') }}" required autocomplete="rurp" autofocus>
+                                <input id="ine_id" type="text" class="form-control @error('ine_id') is-invalid @enderror" name="ine_id" value="{{ old('ine_id') }}" required autocomplete="ine_id" autofocus>
 
-                                @error('email')
+                                @error('ine_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

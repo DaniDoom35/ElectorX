@@ -12,12 +12,12 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
 
-                                @error('name')
+                                @error('nombre')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -25,13 +25,14 @@
                             </div>
                         </div>
 
+
                         <div class="row mb-3">
-                            <label for="curp" class="col-md-4 col-form-label text-md-end">{{ __('CURP') }}</label>
+                            <label for="ine_id" class="col-md-4 col-form-label text-md-end">{{ __('Clave Elector') }}</label>
 
                             <div class="col-md-6">
-                                <input id="curp" type="text" class="form-control @error('name') is-invalid @enderror" name="curp" value="{{ old('curp') }}" required autocomplete="curp" autofocus>
+                                <input id="ine_id" type="text" class="form-control @error('ine_id') is-invalid @enderror" name="ine_id" value="{{ old('ine_id') }}" required autocomplete="ine_id" autofocus>
 
-                                @error('name')
+                                @error('ine_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
