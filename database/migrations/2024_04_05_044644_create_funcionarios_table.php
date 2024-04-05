@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('secciones', function (Blueprint $table) {
+        Schema::create('funcionarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedBigInteger('municipio_id');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('municipio_id')->references('id')->on('municipios');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('secciones');
+        Schema::dropIfExists('funcionarios');
     }
 };

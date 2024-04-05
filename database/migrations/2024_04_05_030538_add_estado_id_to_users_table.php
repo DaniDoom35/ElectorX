@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('casillas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->unsignedBigInteger('eleccion_id');
-            $table->timestamps();
-            $table->foreign('eleccion_id')->references('id')->on('elecciones');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->foreignId('estado_id')->constrained('estados');
+
         });
     }
 
@@ -25,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('casillas');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

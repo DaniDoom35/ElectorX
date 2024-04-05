@@ -3,47 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\Administrador as Authenticatable;
 
-class User extends Authenticatable
+class Administrador extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-
-    public function estado()
-    {
-        return $this->belongsTo(Estado::class);
-    }
-
     protected $fillable = [
-        'name',
-        'curp',
-        'clave_elector',
+        'nombre',
         'email',
-        'password',
-        'domicilio',
-        'municipio',
-        'rol',
-        'estado_id',
-        'seccion',
-        'localidad',
-        'vigencia',
-
+        // Agrega aquí los demás campos de tu modelo Administrador
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',

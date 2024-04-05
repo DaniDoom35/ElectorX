@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('candidatos', function (Blueprint $table) {
+        Schema::create('administradores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedBigInteger('partido_id');
-            $table->string('puesto');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('email_verified_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('partido_id')->references('id')->on('partidos');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('candidatos');
+        Schema::dropIfExists('administradores');
     }
 };

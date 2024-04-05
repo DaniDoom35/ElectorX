@@ -37,6 +37,23 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
+
+
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('¿Eres Votante?') }}</a>
+                                </li>
+
+                            @endif
+
+                            @if (Route::has('email-login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('email-login') }}">{{ __('¿Eres funcionario?') }}</a>
+                                </li>
+
+                            @endif
+
+
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -51,7 +68,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nombre }} / {{ Auth::user()->ine_id }}
+                                    {{ Auth::user()->name }} / {{ Auth::user()->clave_elector }}
                                 </a>
 
 

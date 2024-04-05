@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Estado;
+
 
 class RegisterController extends Controller
 {
@@ -49,9 +51,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nombre' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:2', 'confirmed'],
+            'curp' => ['required', 'string', 'max:255', 'unique:users'],
+            'clave_elector' => ['required', 'string', 'max:255', 'unique:users'],
+            'domicilio' => ['required', 'string', 'max:255'],
+            'municipio' => ['required', 'string', 'max:255'],
+            'estado' => ['required', 'string'],
+            'seccion' => ['required', 'string', 'max:255'],
+            'localidad' => ['required', 'string', 'max:255'],
+            'vigencia' => ['required', 'string'],
+
         ]);
     }
 
@@ -64,16 +75,25 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'nombre' => $data['nombre'],
-            'ine_id' => $data['ine_id'],
+            'name' => $data['name'],
+            'clave_elector' => $data['clave_elector'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'curp' => $data['curp'],
+            'domicilio' => $data['domicilio'],
+            'municipio' => $data['municipio'],
+            'estado_id' => $data['estado'],
+            'seccion' => $data['seccion'],
+            'localidad' => $data['localidad'],
+            'vigencia' => $data['vigencia'],
         ]);
     }
 
-
-
+    public function showRegistrationForm()
+    {
+        $estados = Estado::all();
+        return view('auth.register', compact('estados'));
+    }
 
 
 }
-
