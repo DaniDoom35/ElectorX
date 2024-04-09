@@ -28,11 +28,13 @@ class User extends Authenticatable
         'curp',
         'clave_elector',
         'email',
+        'telefono',
         'password',
         'domicilio',
         'municipio',
-        'rol',
-        'estado_id',
+        'votado',
+        'estado',
+        'distrito',
         'seccion',
         'localidad',
         'vigencia',
@@ -58,4 +60,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed', // Modificado de 'hashed'
     ];
+
 }

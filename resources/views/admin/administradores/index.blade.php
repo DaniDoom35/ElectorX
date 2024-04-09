@@ -1,39 +1,38 @@
-@extends('layouts.app')
+<!-- admin/administradores/index.blade.php -->
+
+@extends('layouts.layout')
 
 @section('content')
-    <div class="container">
-        <h1>Listado de Administradores</h1>
+<div class="container">
+    <h1>Listado de Administradores</h1>
 
-        <a href="{{ route('administradores.create') }}" class="btn btn-primary">Crear Administrador</a>
+    <a href="{{ route('admin.administradores.create') }}" class="btn btn-primary mb-3">Crear Nuevo Administrador</a>
 
+    @if ($administradores->isEmpty())
+        <p>No hay administradores registrados.</p>
+    @else
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Email</th>
-                    <!-- Agrega aquí más columnas si es necesario -->
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($administradores as $administrador)
+                @foreach ($administradores as $admin)
                     <tr>
-                        <td>{{ $administrador->id }}</td>
-                        <td>{{ $administrador->name }}</td>
-                        <td>{{ $administrador->email }}</td>
-                        <!-- Agrega aquí más columnas si es necesario -->
+                        <td>{{ $admin->id }}</td>
+                        <td>{{ $admin->name }}</td>
+                        <td>{{ $admin->email }}</td>
                         <td>
-                            <a href="{{ route('administradores.edit', $administrador->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                            <form action="{{ route('administradores.destroy', $administrador->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                            </form>
+                            <a href="{{ route('admin.administradores.show', $admin->id) }}" class="btn btn-info">Ver Detalles</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-    </div>
+    @endif
+</div>
 @endsection

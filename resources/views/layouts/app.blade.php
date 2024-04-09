@@ -38,31 +38,26 @@
                         <!-- Authentication Links -->
                         @guest
 
-
-                            @if (Route::has('login'))
+                            @if (Route::has('admin.login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('¿Eres Votante?') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.login') }}">{{ __('¿Eres funcionario?') }}</a>
                                 </li>
-
                             @endif
 
-                            @if (Route::has('email-login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('email-login') }}">{{ __('¿Eres funcionario?') }}</a>
-                                </li>
-
-                            @endif
 
 
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('¿Eres Votante? - Inicia Sesion') }}</a>
                                 </li>
+
                             @endif
+
+
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('¡ Registrate !') }}</a>
                                 </li>
                             @endif
                         @else

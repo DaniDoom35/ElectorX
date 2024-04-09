@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('password');
             $table->string('curp')->unique();
             $table->string('clave_elector')->unique();
-            $table->string('rol')->default('user');
+            $table->string('telefono');
             $table->string('domicilio');
+            $table->string('estado');
+            $table->string('distrito');
             $table->string('municipio');
             $table->string('seccion');
-            $table->string('localidad');
             $table->String('vigencia');
             $table->boolean('votado')->default(false);
             $table->timestamp('email_verified_at')->nullable();

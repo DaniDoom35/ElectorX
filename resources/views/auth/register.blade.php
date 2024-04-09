@@ -57,6 +57,16 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="telefono" class="form-label">{{ __('Telefono') }}</label>
+                            <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+                            @error('telefono')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="clave_elector" class="form-label">{{ __('Clave Elector') }}</label>
                             <input id="clave_elector" type="text" class="form-control @error('clave_elector') is-invalid @enderror" name="clave_elector" value="{{ old('clave_elector') }}" required autocomplete="clave_elector" autofocus>
                             @error('clave_elector')
@@ -78,7 +88,12 @@
 
                         <div class="col-md-6">
                             <label for="municipio" class="form-label">{{ __('Municipio') }}</label>
-                            <input id="municipio" type="text" class="form-control @error('municipio') is-invalid @enderror" name="municipio" value="{{ old('municipio') }}" required autocomplete="municipio" autofocus>
+                            <select id="municipio" class="form-select @error('municipio') is-invalid @enderror" name="municipio" required autocomplete="municipio" autofocus>
+                                <option value="" disabled selected>Seleccione el municipio</option>
+                                @foreach ($municipios as $municipio)
+                                    <option value="{{ $municipio->id }}" @if(old('municipio') == $municipio->id) selected @endif>{{ $municipio->nombre }}</option>
+                                @endforeach
+                            </select>
                             @error('municipio')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -90,7 +105,7 @@
                             <label for="estado" class="form-label">{{ __('Estado') }}</label>
                             <select id="estado" class="form-select @error('estado') is-invalid @enderror" name="estado" required autocomplete="estado" autofocus>
                                 <option value="" disabled selected>Seleccione el estado</option>
-                                @foreach($estados as $estado)
+                                @foreach ($estados as $estado)
                                     <option value="{{ $estado->id }}" @if(old('estado') == $estado->id) selected @endif>{{ $estado->nombre }}</option>
                                 @endforeach
                             </select>
@@ -100,7 +115,6 @@
                                 </span>
                             @enderror
                         </div>
-
 
                         <div class="col-md-6">
                             <label for="seccion" class="form-label">{{ __('Sección') }}</label>
@@ -113,20 +127,20 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="localidad" class="form-label">{{ __('Localidad') }}</label>
-                            <input id="localidad" type="text" class="form-control @error('localidad') is-invalid @enderror" name="localidad" value="{{ old('localidad') }}" required autocomplete="localidad" autofocus>
-                            @error('localidad')
+                            <label for="distrito" class="form-label">{{ __('Distrito') }}</label>
+                            <input id="distrito" type="text" class="form-control @error('distrito') is-invalid @enderror" name="distrito" value="{{ old('distrito') }}" required autocomplete="distrito" autofocus>
+                            @error('distrito')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+
 
                         <div class="col-md-6">
                             <label for="vigencia" class="form-label">{{ __('Vigencia (Año)') }}</label>
                             <select id="vigencia" class="form-select @error('vigencia') is-invalid @enderror" name="vigencia" required autocomplete="vigencia" autofocus>
                                 <option value="" disabled selected>Seleccione el año</option>
-                                @for ($year = 2020; $year <= 2030; $year++)
+                                @for ($year = 2002; $year <= 2018; $year++)
                                     <option value="{{ $year }}" @if(old('vigencia') == $year) selected @endif>{{ $year }}</option>
                                 @endfor
                             </select>
@@ -136,8 +150,6 @@
                                 </span>
                             @enderror
                         </div>
-
-
 
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>

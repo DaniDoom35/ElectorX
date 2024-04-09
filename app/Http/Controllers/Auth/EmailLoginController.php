@@ -30,11 +30,17 @@ class EmailLoginController extends Controller
             // Si el usuario es un administrador, intenta autenticarlo
             if (Auth::attempt($request->only('email', 'password'))) {
                 // Si la autenticación es exitosa, redirige al área de administrador
-                return redirect()->route('admin.administradores.index');
+                return redirect()->route('admin.administradores.dashboard');
+            }
+        } elseif ($this->isWorker($request->email, $request->password)) {
+            // Si el usuario es un trabajador, intenta autenticarlo
+            if (Auth::attempt($request->only('email', 'password'))) {
+                // Si la autenticación es exitosa, redirige al área de trabajador
+                return redirect()->route('admin.funcionario.index');
             }
         }
 
-        // Si la autenticación falla o el usuario no es administrador, muestra un mensaje de error
+        // Si la autenticación falla o el usuario no es administrador ni trabajador, muestra un mensaje de error
         throw ValidationException::withMessages([
             'email' => __('auth.failed'),
         ]);
@@ -63,13 +69,35 @@ class EmailLoginController extends Controller
     }
 
     /**
+     * Check if the given user has worker role.
+     *
+     * @param string $email
+     * @param string $password
+     * @return bool
+     */
+    protected function isWorker($email, $password)
+    {
+        // Buscar al usuario por su correo electrónico en la base de datos
+        $user = User::where('email', $email)->first();
+
+        // Verificar si se encontró un usuario y si su rol es "worker"
+        if ($user && $user->rol === 'worker') {
+            // Si el usuario tiene el rol de trabajador, retorna true
+            return true;
+        }
+
+        // Si el usuario no tiene el rol de trabajador, retorna false
+        return false;
+    }
+
+    /**
      * Show the login form.
      *
      * @return \Illuminate\View\View
      */
     public function showLoginForm()
     {
-        return view('auth.email-login');
+        return view('auth.emaillogin');
     }
 
 }

@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Estado;
+use App\Models\Municipio;
+use App\Models\Seccion;
+use App\Models\Distrito;
 
 
 class RegisterController extends Controller
@@ -59,8 +62,8 @@ class RegisterController extends Controller
             'domicilio' => ['required', 'string', 'max:255'],
             'municipio' => ['required', 'string', 'max:255'],
             'estado' => ['required', 'string'],
+            'distrito' => ['string', 'max:255'],
             'seccion' => ['required', 'string', 'max:255'],
-            'localidad' => ['required', 'string', 'max:255'],
             'vigencia' => ['required', 'string'],
 
         ]);
@@ -80,11 +83,12 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'curp' => $data['curp'],
+            'telefono' => $data['telefono'],
             'domicilio' => $data['domicilio'],
             'municipio' => $data['municipio'],
-            'estado_id' => $data['estado'],
+            'estado' => $data['estado'],
+            'distrito' => $data['distrito'],
             'seccion' => $data['seccion'],
-            'localidad' => $data['localidad'],
             'vigencia' => $data['vigencia'],
         ]);
     }
@@ -92,7 +96,10 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $estados = Estado::all();
-        return view('auth.register', compact('estados'));
+        $municipios = Municipio::all();
+        $secciones = Seccion::all();
+        $distritos = Distrito::all();
+        return view('auth.register', compact('estados', 'municipios', 'secciones', 'distritos'));
     }
 
 

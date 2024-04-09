@@ -5,19 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Funcionario;
 
 class AdministradorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the index view.
      */
     public function index()
     {
-        // Obtener todos los usuarios que tengan el rol de administrador
-        $administradores = User::where('rol', 'admin')->get();
+        $administradores = Admin::all();
+        $funcionarios = Funcionario::all();
 
-        // Pasar los usuarios a la vista 'Admin.administradores.index'
-        return view('Admin.administradores.index', compact('administradores'));
+        return view('admin.administradores.index', compact('administradores'))
+            ->with('funcionarios', $funcionarios);
     }
 
     /**
@@ -25,7 +27,7 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-        return view('Admin.administradores.create');
+        return view('admin.administradores.create');
     }
 
     /**
@@ -33,38 +35,31 @@ class AdministradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+        ]);
+
+        // Create a new user with admin role
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'rol' => 'admin',
+        ]);
+
+        return redirect()->route('admin.administradores.index')
+            ->with('success', 'Administrador creado exitosamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Show details of a specific user by ID.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
-    }
+        $administrador = Admin::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('admin.administradores.show', compact('user'));
     }
 }
