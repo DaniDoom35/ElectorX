@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+
 class FuncionarioController extends Controller
 {
     /**
@@ -13,10 +14,8 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        //
-        $Usuarios = User::whereIn('rol', ['worker', 'admin', 'user'])->get();
-
-        return view('admin.funcionarios.index', compact('Usuarios'));
+       $usuarios = User::all();
+         return view('admin.funcionarios.index', compact('usuarios'));
 
     }
     /**
@@ -42,8 +41,6 @@ class FuncionarioController extends Controller
     {
         //
 
-        $usuarios = User::all(); // Ejemplo de obtención de datos desde el modelo
-    return view('votantes', ['Usuarios' => $usuarios]);
     }
 
     /**

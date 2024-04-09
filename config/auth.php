@@ -51,7 +51,13 @@ return [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
-        ]
+        ],
+
+        'funcionario' => [
+            'driver' => 'session',
+            'provider' => 'funcionarios',
+            'model' => App\Models\Funcionario::class,
+        ],
     ],
 
     /*
@@ -80,6 +86,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+
+        'funcionarios' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Funcionario::class,
         ],
 
         // 'users' => [
@@ -116,6 +127,11 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'funcionarios' => [
+            'provider' => 'funcionarios',
             'table' => 'password_resets',
             'expire' => 60,
         ],

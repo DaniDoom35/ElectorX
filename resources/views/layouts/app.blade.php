@@ -38,9 +38,19 @@
                         <!-- Authentication Links -->
                         @guest
 
+                            {{-- Funcionario --}}
+                            @if (Route::has('funcionario.login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('funcionario.login') }}">{{ __('¿Eres Funcionario?') }}</a>
+                                </li>
+                            @endif
+
+
+                             {{-- Administrador --}}
+
                             @if (Route::has('admin.login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.login') }}">{{ __('¿Eres funcionario?') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.login') }}">{{ __('¿Eres Administrador?') }}</a>
                                 </li>
                             @endif
 

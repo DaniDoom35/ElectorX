@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdministradorController;
-use App\Http\Controllers\Admin\FuncionarioController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\FuncionarioAuthController;
 
 
 
@@ -44,8 +44,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 
 
-
-
 Route::get('/admin', [AdministradorController::class, 'index'])->name('admin.administradores.index');
 Route::get('/adminin/create', [AdministradorController::class, 'create'])->name('admin.administradores.create');
 Route::post('/admin', [AdministradorController::class, 'store'])->name('admin.administradores.store');
@@ -54,15 +52,21 @@ Route::get('/admin/{id}/edit', [AdministradorController::class, 'edit'])->name('
 Route::put('/admin/{id}', [AdministradorController::class, 'update'])->name('admin.administradores.update');
 Route::delete('/admin/{id}', [AdministradorController::class, 'destroy'])->name('admin.administradores.destroy');
 
-//Administrador - Funcioario
-
-Route::get('/admin/funcionario', [FuncionarioController::class, 'index'])->name('admin.funcionario.index');
-Route::get('/admin/funcionario/create', [FuncionarioController::class, 'create'])->name('admin.funcionario.create');
-Route::post('/admin/funcionario', [FuncionarioController::class, 'store'])->name('admin.funcionario.store');
-
 
 //Funcionarios
-Route::get('/funcionario', [FuncionarioController::class, 'index'])->name('admin.funcionario.index');
+
+// // Rutas de autenticación para funcionarios
+
+Route::prefix('funcionario')->middleware('funcionario')->group(function () {
+    Route::get('/login', [FuncionarioAuthController::class, 'showLoginForm'])->name('funcionario.login');
+    Route::post('/login', [FuncionarioAuthController::class, 'login']);
+    Route::post('/logout', [FuncionarioAuthController::class, 'logout'])->name('funcionario.logout');
+    Route::get('/funcionario/index', function () {
+        return view('admin.funcionarios.index');
+    })->name('funcionario.index');
+});
+
+
 
 
 

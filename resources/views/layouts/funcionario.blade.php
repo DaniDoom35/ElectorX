@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="">
                     {{ config('', 'Elector X') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -38,60 +38,26 @@
                         <!-- Authentication Links -->
                         @guest
 
-
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('¿Eres Votante?') }}</a>
-                                </li>
-
-                            @endif
-
-                            @if (Route::has('emaillogin'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('emaillogin') }}">{{ __('¿Eres funcionario?') }}</a>
-                                </li>
-
-                            @endif
-
-
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
                         @else
+                            <!-- Display navigation for authenticated funcionario -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} / {{ Auth::user()->clave_elector }}
+                                    {{ Auth::guard('funcionario')->user()->name }} / {{ Auth::guard('funcionario')->user()->email }}
                                 </a>
 
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('customize') }}">{{ __('Personalizar perfil') }}</a>
 
-                                      @auth
-                                      <a id="customize-profile-link" class="dropdown-item" href="{{ route('customize') }}">{{ __('Personalizar perfil') }}</a>
-                                        @endauth
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-
-
                                 </div>
-
                             </li>
+
                         @endguest
                     </ul>
                 </div>
