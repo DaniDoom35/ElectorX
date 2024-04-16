@@ -28,4 +28,11 @@ class FuncionarioAuthController extends Controller
     }
 }
 
+public function logout()
+{
+    Auth::guard('funcionario')->logout();
+    return redirect()->route('funcionario.login');
+
+}
+
 }

@@ -18,16 +18,17 @@ class Funcionario extends Authenticatable
     protected $fillable = [
         'email',
         'password',
-        'nombre',
-        'apellido_paterno',
-        'apellido_materno',
+        'name',
+        'puesto',
         'telefono',
         'tipo',
+        'direccion',
+        'casilla_id',
         'municipio_id',
         'distrito_id',
         'seccion_id',
         'estado_id',
-        
+
     ];
 
     /**

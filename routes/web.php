@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdministradorController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\FuncionarioAuthController;
+use App\Http\Controllers\Admin\FuncionarioController;
 
 
 
@@ -58,13 +59,12 @@ Route::delete('/admin/{id}', [AdministradorController::class, 'destroy'])->name(
 // // Rutas de autenticación para funcionarios
 
 Route::prefix('funcionario')->middleware('funcionario')->group(function () {
+    Route::get('/index', [FuncionarioController::class, 'index'])->name('funcionario.index');
     Route::get('/login', [FuncionarioAuthController::class, 'showLoginForm'])->name('funcionario.login');
     Route::post('/login', [FuncionarioAuthController::class, 'login']);
     Route::post('/logout', [FuncionarioAuthController::class, 'logout'])->name('funcionario.logout');
-    Route::get('/funcionario/index', function () {
-        return view('admin.funcionarios.index');
-    })->name('funcionario.index');
 });
+
 
 
 
