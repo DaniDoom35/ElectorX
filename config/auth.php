@@ -40,6 +40,24 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+            'model' => App\Models\Admin::class,
+        ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+
+        'funcionario' => [
+            'driver' => 'session',
+            'provider' => 'funcionarios',
+            'model' => App\Models\Funcionario::class,
+        ],
     ],
 
     /*
@@ -63,6 +81,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
+        'funcionarios' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Funcionario::class,
         ],
 
         // 'users' => [
@@ -96,6 +124,16 @@ return [
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'funcionarios' => [
+            'provider' => 'funcionarios',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 

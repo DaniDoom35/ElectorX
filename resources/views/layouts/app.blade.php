@@ -37,21 +37,43 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
+
+                            {{-- Funcionario --}}
+                            @if (Route::has('funcionario.login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('funcionario.login') }}">{{ __('¿Eres Funcionario?') }}</a>
                                 </li>
                             @endif
 
+
+                             {{-- Administrador --}}
+
+                            @if (Route::has('admin.login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.login') }}">{{ __('¿Eres Administrador?') }}</a>
+                                </li>
+                            @endif
+
+
+
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('¿Eres Votante? - Inicia Sesion') }}</a>
+                                </li>
+
+                            @endif
+
+
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('¡ Registrate !') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nombre }} / {{ Auth::user()->ine_id }}
+                                    {{ Auth::user()->name }} / {{ Auth::user()->clave_elector }}
                                 </a>
 
 
