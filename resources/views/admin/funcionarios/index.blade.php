@@ -12,7 +12,7 @@
                             <th>Clave Elector</th>
                             <th>Nombre</th>
                             <th>CURP</th>
-                            <th>Vigencia</th>
+                            <th>Año de emision</th>
                             <th>Acción</th> <!-- Agregamos una columna para la acción -->
                         </tr>
                     </thead>
