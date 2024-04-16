@@ -23,7 +23,6 @@ class CreateCasillasTable extends Migration
             $table->foreignId('estado_id')->constrained('estados');
             $table->string('ubicacion');
             $table->string('tipo');
-            $table->string('tipo_casilla');
             $table->timestamps();
         });
     }

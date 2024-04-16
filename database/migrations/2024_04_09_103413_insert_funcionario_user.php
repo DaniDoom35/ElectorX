@@ -20,9 +20,10 @@ return new class extends Migration
         $funcionario->puesto = 'Jefe';
         $funcionario->telefono = '1234567890';
         $funcionario->casilla_id = 1;
-        $funcionario->password = bcrypt
-        ('123');
+        $funcionario->direccion = 'Calle 1';
+        $funcionario->password = bcrypt('123');
         $funcionario->save();
+
 
     }
 
