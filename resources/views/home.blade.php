@@ -22,7 +22,7 @@
                 <div class="card-header">Candidata 2 - María Rodríguez</div>
                 <div class="card-body text-center"> <!-- Aplicando text-center para centrar el contenido -->
                     <img src="{{ asset('storage/2.jpg') }}" alt="Candidata 2 - María Rodríguez" class="img-fluid d-block mb-3">
-                    <p>Manifiesto de María Rodríguez: Trabajaré por la inclusión social y el desarrollo sostenible.</p>
+                    <p>Manifiesto de María Rodríguez: Trabajaré por la inclusión social y el desarrollo social.</p>
                     <form action="" method="">
                         @csrf
                         <input type="hidden" name="candidato" value="2">
