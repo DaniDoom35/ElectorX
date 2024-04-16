@@ -27,9 +27,8 @@
                                 @if (substr($usuario->curp, 4, 2) >= '08')
                                     <!-- La condición verifica que el año de emisión sea mayor o igual a '08' (2008) -->
 
-                                    {{-- Dar permiso al usuario --}}
-                                    <form action="{{ route('funcionario.permiso', $usuario->id) }}" method="POST">
-
+                                    {{-- Dar --}}
+                                    <form action="{{ route('admin.administradores.destroy', $usuario->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-success btn-sm">Dar Permiso</button>

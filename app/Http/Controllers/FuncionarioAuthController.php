@@ -12,7 +12,7 @@ class FuncionarioAuthController extends Controller
 
     public function showLoginForm()
     {
-        return  view('admin.funcionarios.auth.login');
+        return  view('admin.funcionarios.Auth.login');
     }
 
     public function login(Request $request)
@@ -31,7 +31,7 @@ class FuncionarioAuthController extends Controller
 public function logout()
 {
     Auth::guard('funcionario')->logout();
-    return redirect()->route('funcionario.login');
+    return redirect('/funcionario/login');
 
 }
 
