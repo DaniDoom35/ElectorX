@@ -12,7 +12,7 @@
                             <th>Clave Elector</th>
                             <th>Nombre</th>
                             <th>CURP</th>
-                            <th>Vigencia</th>
+                            <th>Año de Emision</th>
                             <th>Acción</th> <!-- Agregamos una columna para la acción -->
                         </tr>
                     </thead>
@@ -24,20 +24,20 @@
                             <td>{{ $usuario->curp }}</td>
                             <td>{{ $usuario->vigencia }}</td>
                             <td>
-                                @if (substr($usuario->curp, 4, 2) >= '08')
-                                    <!-- La condición verifica que el año de emisión sea mayor o igual a '08' (2008) -->
-
-                                    {{-- Dar --}}
+                                @if ($usuario->vigencia >= 2008)
+                                    <!-- La condición verifica que la vigencia sea mayor o igual a 2008 -->
+                            
                                     <form action="{{ route('admin.administradores.destroy', $usuario->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-success btn-sm">Dar Permiso</button>
                                     </form>
                                 @else
-                                    <!-- Si el año de emisión es menor a '08' (2008), el usuario no puede votar -->
+                                    <!-- Si la vigencia es menor a 2008, el usuario no puede votar -->
                                     <span class="text-muted">No puede votar</span>
                                 @endif
                             </td>
+                            
                         </tr>
                         @endforeach
                     </tbody>
