@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="col-md-6">
-                            <label for="name" class="form-label">{{ __('Name') }}</label>
+                            <label for="name" class="form-label">{{ __('Nombre') }}</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                            <label for="email" class="form-label">{{ __('Correo') }}</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="password" class="form-label">{{ __('Password') }}</label>
+                            <label for="password" class="form-label">{{ __('Contraseña') }}</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="form-label">{{ __('Confirmar Contraseña') }}</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
@@ -118,7 +118,12 @@
 
                         <div class="col-md-6">
                             <label for="seccion" class="form-label">{{ __('Sección') }}</label>
-                            <input id="seccion" type="text" class="form-control @error('seccion') is-invalid @enderror" name="seccion" value="{{ old('seccion') }}" required autocomplete="seccion" autofocus>
+                            <select id="seccion" class="form-select @error('seccion') is-invalid @enderror" name="seccion" required autocomplete="seccion" autofocus>
+                                <option value="" disabled selected>Seleccione la sección</option>
+                                @foreach ($secciones as $seccion)
+                                    <option value="{{ $seccion->id }}" @if(old('seccion') == $seccion->id) selected @endif>{{ $seccion->nombre }}</option>
+                                @endforeach
+                            </select>
                             @error('seccion')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -126,18 +131,26 @@
                             @enderror
                         </div>
 
+
                         <div class="col-md-6">
                             <label for="distrito" class="form-label">{{ __('Distrito') }}</label>
-                            <input id="distrito" type="text" class="form-control @error('distrito') is-invalid @enderror" name="distrito" value="{{ old('distrito') }}" required autocomplete="distrito" autofocus>
+                            <select id="distrito" class="form-select @error('distrito') is-invalid @enderror" name="distrito" required autocomplete="distrito" autofocus>
+                                <option value="" disabled selected>Seleccione el distrito</option>
+                                @foreach ($distritos as $distrito)
+                                    <option value="{{ $distrito->id }}" @if(old('distrito') == $distrito->id) selected @endif>{{ $distrito->nombre }}</option>
+                                @endforeach
+                            </select>
                             @error('distrito')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                        </div>
+
 
 
                         <div class="col-md-6">
-                            <label for="vigencia" class="form-label">{{ __('Vigencia (Año)') }}</label>
+                            <label for="vigencia" class="form-label">{{ __('Año de emision (Año)') }}</label>
                             <select id="vigencia" class="form-select @error('vigencia') is-invalid @enderror" name="vigencia" required autocomplete="vigencia" autofocus>
                                 <option value="" disabled selected>Seleccione el año</option>
                                 @for ($year = 2002; $year <= 2018; $year++)
@@ -152,7 +165,7 @@
                         </div>
 
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Registrarte') }}</button>
                         </div>
                     </form>
                 </div>
